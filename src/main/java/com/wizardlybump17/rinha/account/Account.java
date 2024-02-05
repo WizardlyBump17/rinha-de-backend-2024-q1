@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 public class Account {
 
-    private final int id;
+    private final long id;
     private int balance;
     private int limit;
     private final @NonNull List<Transaction> transactions;
