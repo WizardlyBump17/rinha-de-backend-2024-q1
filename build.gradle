@@ -22,6 +22,7 @@ dependencies {
 			'org.projectlombok:lombok:1.18.28',
 	)
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	annotationProcessor('org.projectlombok:lombok:1.18.28')
 }
 
 tasks.named('test') {
