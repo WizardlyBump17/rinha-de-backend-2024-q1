@@ -2,9 +2,9 @@ package com.wizardlybump17.rinha.account.transaction;
 
 import lombok.NonNull;
 
-import java.util.Date;
+import java.time.Instant;
 
-public record Transaction(int amount, @NonNull TransactionType type, @NonNull String description, @NonNull Date date) {
+public record Transaction(int amount, @NonNull TransactionType type, @NonNull String description, @NonNull Instant time) {
 
     public static final int MIN_DESCRIPTION_LENGTH = 1;
     public static final int MAX_DESCRIPTION_LENGTH = 10;

@@ -19,7 +19,7 @@ public class Account {
 
     public @NonNull AccountStatement createStatement() {
         List<Transaction> transactions = this.transactions.subList(0, Math.min(this.transactions.size(), AccountStatement.MAX_TRANSACTIONS));
-        return new AccountStatement(balance, new Date(), limit, transactions);
+        return new AccountStatement(balance, Instant.now(), limit, transactions);
     }
 
     public void withdraw(int amount, @NonNull String description) {
@@ -29,7 +29,7 @@ public class Account {
         if (balance - amount < -limit)
             throw new IllegalArgumentException("The balance after the withdrawal can't be less than the limit");
 
-        transactions.add(new Transaction(-amount, TransactionType.WITHDRAW, description, new Date()));
+        transactions.add(new Transaction(-amount, TransactionType.WITHDRAW, description, Instant.now()));
         balance -= amount;
     }
 
@@ -37,7 +37,7 @@ public class Account {
         if (amount < 1)
             throw new IllegalArgumentException("The amount must be greater than 1");
 
-        transactions.add(new Transaction(amount, TransactionType.DEPOSIT, description, new Date()));
+        transactions.add(new Transaction(amount, TransactionType.DEPOSIT, description, Instant.now()));
         balance += amount;
     }
 }
