@@ -17,6 +17,13 @@ public class Account {
     private int limit;
     private final @NonNull List<Transaction> transactions;
 
+    public Account(long id, int balance, int limit, @NonNull List<Transaction> transactions) {
+        this.id = id;
+        this.balance = balance;
+        this.limit = limit;
+        this.transactions = transactions;
+    }
+
     public @NonNull AccountStatement createStatement() {
         List<Transaction> transactions = this.transactions.subList(0, Math.min(this.transactions.size(), AccountStatement.MAX_TRANSACTIONS));
         return new AccountStatement(balance, Instant.now(), limit, transactions);
