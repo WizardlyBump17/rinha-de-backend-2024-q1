@@ -8,9 +8,12 @@ import lombok.NonNull;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Data
 public class Account {
+
+    public static final @NonNull AtomicLong COUNTER = new AtomicLong(1);
 
     private final long id;
     private int balance;
