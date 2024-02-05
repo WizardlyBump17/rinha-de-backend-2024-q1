@@ -6,7 +6,7 @@ import com.wizardlybump17.rinha.account.transaction.TransactionType;
 import lombok.Data;
 import lombok.NonNull;
 
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 @Data
