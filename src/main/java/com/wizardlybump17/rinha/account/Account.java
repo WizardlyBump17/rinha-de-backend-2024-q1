@@ -2,6 +2,7 @@ package com.wizardlybump17.rinha.account;
 
 import com.wizardlybump17.rinha.account.statement.AccountStatement;
 import com.wizardlybump17.rinha.account.transaction.Transaction;
+import com.wizardlybump17.rinha.account.transaction.TransactionRequest;
 import com.wizardlybump17.rinha.account.transaction.TransactionResult;
 import com.wizardlybump17.rinha.account.transaction.TransactionType;
 import lombok.Data;
@@ -54,5 +55,9 @@ public class Account {
         balance += amount;
 
         return new TransactionResult(balance, limit);
+    }
+
+    public @NonNull TransactionResult processTransaction(@NonNull TransactionRequest request) {
+        return request.type() == TransactionType.DEPOSIT ? deposit(request.amount(), request.description()) : withdraw(request.amount(), request.description());
     }
 }
