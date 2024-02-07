@@ -36,25 +36,25 @@ public class Account {
 
     public @NonNull TransactionResult withdraw(int amount, @NonNull String description) {
         if (amount < 1)
-            return new TransactionResult(balance, limit, new IllegalArgumentException("The amount must be greater than 1"));
+            return new TransactionResult(balance, limit, TransactionResult.ResultType.INVALID_AMOUNT, new IllegalArgumentException("The amount must be greater than 1"));
 
         if (balance - amount < -limit)
-            return new TransactionResult(balance, limit, new IllegalArgumentException("The balance after the withdrawal can't be less than the limit"));
+            return new TransactionResult(balance, limit, TransactionResult.ResultType.NOT_ENOUGH_BALANCE, new IllegalArgumentException("The balance after the withdrawal can't be less than the limit"));
 
         transactions.add(new Transaction(-amount, TransactionType.WITHDRAW, description, Instant.now()));
         balance -= amount;
 
-        return new TransactionResult(balance, limit);
+        return new TransactionResult(balance, limit, TransactionResult.ResultType.SUCCESS);
     }
 
     public @NonNull TransactionResult deposit(int amount, @NonNull String description) {
         if (amount < 1)
-            return new TransactionResult(balance, limit, new IllegalArgumentException("The amount must be greater than 1"));
+            return new TransactionResult(balance, limit, TransactionResult.ResultType.INVALID_AMOUNT, new IllegalArgumentException("The amount must be greater than 1"));
 
         transactions.add(new Transaction(amount, TransactionType.DEPOSIT, description, Instant.now()));
         balance += amount;
 
-        return new TransactionResult(balance, limit);
+        return new TransactionResult(balance, limit, TransactionResult.ResultType.SUCCESS);
     }
 
     public @NonNull TransactionResult processTransaction(@NonNull TransactionRequest request) {
