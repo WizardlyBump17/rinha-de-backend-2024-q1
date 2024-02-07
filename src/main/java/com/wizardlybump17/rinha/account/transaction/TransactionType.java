@@ -14,4 +14,11 @@ public enum TransactionType {
     WITHDRAW("d"); //debitar
 
     private final @NonNull String display;
+
+    public static @NonNull TransactionType fromDisplay(@NonNull String display) {
+        for (TransactionType type : values())
+            if (type.display.equals(display))
+                return type;
+        throw new IllegalArgumentException("Invalid display");
+    }
 }
