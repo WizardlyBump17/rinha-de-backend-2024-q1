@@ -22,7 +22,8 @@ public record TransactionResult(int balance, int limit, @NonNull ResultType resu
 
         SUCCESS(200),
         NOT_ENOUGH_BALANCE(422),
-        INVALID_AMOUNT(422);
+        INVALID_AMOUNT(422),
+        INVALID_ACCOUNT(404);
 
         private final int httpStatus;
     }
